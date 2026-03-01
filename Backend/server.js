@@ -4,8 +4,6 @@ import mongoose from "mongoose";
 import authRoute from './routes/authRoute.js'
 import dashboardRoute from './routes/dashboardRoute.js'
 import cartRoute from './routes/cartRoute.js'
-import {fileURLToPath} from 'url'
-import path from 'path'
 import connectDB from './config/db.js'
 
 const __filename = fileURLToPath(import.meta.url)

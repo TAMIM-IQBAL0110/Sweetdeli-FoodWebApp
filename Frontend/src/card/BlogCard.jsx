@@ -5,7 +5,6 @@ import { FaImage } from "react-icons/fa";
 const BlogCard = () => {
   return (
     <div className="min-h-[calc(100vh-90px)] flex items-center bg-white-700">
-
       <div
         className="w-full flex flex-col lg:flex-row items-center justify-between"
         style={{ padding: "0 80px" }}

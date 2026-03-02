@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import apiClient from "../../utilities/apiClient";
 import { API_PATHS } from "../../utilities/apiPath";
+import LeftSideAuthPage from "../../componets/LeftSideAuthPage";
+import AuthForm, { AuthInput } from "../../componets/AuthForm";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +30,6 @@ const SignUp = () => {
     setLoading(true);
     setError("");
 
-    // Validation
     if (!formData.name.trim()) {
       setError("Full name is required");
       setLoading(false);
@@ -70,58 +71,55 @@ const SignUp = () => {
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       {/* Left side */}
-      <div className="flex-1 flex items-center justify-center bg-[#343741] text-white">
-        <h1 className="text-2xl font-semibold">Image Placeholder</h1>
+      <div className="flex-1">
+        <LeftSideAuthPage />
       </div>
 
-      {/* Right side */}
-      <div className="flex-1 bg-white px-12 py-16 text-black">
-        {/* Title Section */}
-        <div className="mb-10">
-          <h1 className="text-3xl font-bold mb-2">Create your account</h1>
-          <p className="text-gray-500">It's free and easy</p>
-        </div>
+      {/* Right side - Form */}
+      <div className="flex-1 flex items-center justify-center bg-white py-12">
+        <AuthForm
+          title="Create your account"
+          subtitle="It's free and easy"
+          submitText={loading ? "Signing up..." : "Sign Up"}
+          onSubmit={handleSubmit}
+          footerText="Already have an account?"
+          footerLinkText="Sign In"
+          onFooterClick={() => navigate("/login")}
+        >
+          {error && (
+            <div className="p-3 bg-red-100 text-red-700 rounded-md text-sm">
+              {error}
+            </div>
+          )}
+          {success && (
+            <div className="p-3 bg-green-100 text-green-700 rounded-md text-sm">
+              Account created successfully! Redirecting...
+            </div>
+          )}
 
-        {/* Form */}
-        <form className="space-y-6">
-          {/* Full Name */}
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-600">
-              Full name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              className="w-full bg-gray-200 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-600">
-              E-mail or phone number
-            </label>
-            <input
-              type="text"
-              placeholder="Type your e-mail or phone number"
-              className="w-full bg-gray-200 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-600">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="Type your password"
-              className="w-full bg-gray-200 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <p className="text-xs text-gray-500 mt-2">
-              Must be 8 characters at least
-            </p>
-          </div>
+          <AuthInput
+            label="Full name"
+            placeholder="Enter your name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <AuthInput
+            label="E-mail or phone number"
+            placeholder="Type your e-mail or phone number"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <AuthInput
+            label="Password"
+            placeholder="Type your password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            helperText="Must be 8 characters at least"
+          />
 
           {/* Terms */}
           <div className="flex items-start gap-3 text-sm text-gray-600">
@@ -137,7 +135,7 @@ const SignUp = () => {
               </span>
             </p>
           </div>
-        </form>
+        </AuthForm>
       </div>
     </div>
   );

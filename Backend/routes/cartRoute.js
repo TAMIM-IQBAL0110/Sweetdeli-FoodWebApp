@@ -1,18 +1,11 @@
 import express from 'express';
+import { protect } from '../middlewares/authMiddleware.js';
+import { addToCart,updateCartItem,removeFromCart,getCartItems} from '../controllers/cartController.js';
 
 const router = express.Router();
 
-// Cart routes will be added here
-router.get('/', (req, res) => {
-  res.json({ message: 'Cart route' });
-});
-
-router.post('/', (req, res) => {
-  res.json({ message: 'Add to cart' });
-});
-
-router.delete('/:id', (req, res) => {
-  res.json({ message: 'Remove from cart' });
-});
-
+router.post('/add',protect,addToCart);
+router.put('/update/:id',protect,updateCartItem);
+router.delete('/remove/:id',protect,removeFromCart);
+router.get('/getItems',protect,getCartItems);
 export default router;

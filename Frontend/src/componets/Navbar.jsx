@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MdPerson, MdShoppingCart } from "react-icons/md";
+import { API_PATHS } from "../utilities/apiPath";
+import apiClient from "../utilities/apiClient";
 
 const Navbar = () => {
   const navbarItem = ["Home", "Discover", "Blog", "About Us", "Contact"];
   const location = useLocation();
-  const [cartCount] = useState(2);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      try {
+        const response = await apiClient.authGet(API_PATHS.CART.GET_ITEMS);
+        if (response?.items) {
+          setCartCount(response.items.length);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cart items:", error);
+      }
+    };
+    fetchCartCount();
+  }, []);
 
   const isActive = (path) =>
     location.pathname === path

@@ -35,7 +35,7 @@ const DashboardLayout = ()=>{
 const Root = ()=>{
   const isAuthenticated = !!localStorage.getItem('token')
   return isAuthenticated?(
-    <Navigate to = "/dashboard" replace/>
+    <Navigate to = "/home" replace/>
   ):(
     <Navigate to = "/login" replace/>
   )

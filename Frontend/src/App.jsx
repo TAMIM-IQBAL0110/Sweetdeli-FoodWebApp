@@ -1,7 +1,16 @@
 import React from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate,Outlet} from 'react-router-dom'
 import Navbar from "./componets/Navbar"
-import UserProvider from "./context/UserContext";
+import UserProvider from "./context/UserContext"
+import SignUp from "./pages/Auth/SignUp"
+import Login from "./pages/Auth/Login"
+import Home from "./pages/Home"
+import Discover from "./pages/Discover"
+import Blog from "./pages/Blog"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import AddCard from "./pages/AddCard"
+import Profile from "./pages/Profile"
 
 
 // protected Route Layout Component
@@ -50,7 +59,7 @@ function App(){
               <Route path = "/home" element = {<Home/>}/>
               <Route path = "/discover" element = {<Discover/>}/>
               <Route path = "/blog" element = {<Blog/>}/>
-              <Route path = "/about" element = {<About/>}/>
+              <Route path = "/aboutus" element = {<About/>}/>
               <Route path = "/contact" element = {<Contact/>}/>
               <Route path = "/addCard" element = {<AddCard/>}/>
               <Route path = "/profile" element = {<Profile/>}/>

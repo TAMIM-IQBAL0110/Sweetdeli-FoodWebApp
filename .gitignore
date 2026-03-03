@@ -1,9 +1,38 @@
+
+# Node modules
 node_modules/
+**/node_modules/
+
+# Environment variables
+.env
+**/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / production folders
 dist/
 build/
-.env
+**/dist/
+**/build/
+
+# Vite / React
+.vite/
+*.local
+
+# OS / System files
 .DS_Store
-*.log
+Thumbs.db
+*.swp
 .idea/
 .vscode/
-*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.log
+*.tmp
+*.bak
